@@ -33,3 +33,7 @@ cities = [
 ]
 
 cities.each { |city_name| City.find_or_create_by!(name: city_name) }
+
+# Create car models
+
+car_names = ['Toyota Camry', 'Honda Accord', 'Ford Mustang', 'Chevrolet Malibu', 'Hyundai Sonata', 'Nissan Altima', 'Volkswagen Passat', 'Subaru Legacy', 'Kia Optima', 'Audi A4', 'BMW 3 Series', 'Mercedes-Benz C-Class', 'Lexus ES', 'Volvo S60', 'Infiniti Q50', 'Acura TLX', 'Cadillac CT5', 'Lincoln MKZ', 'Alfa Romeo Giulia', 'Jaguar XE']
