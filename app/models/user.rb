@@ -10,9 +10,17 @@ class User < ApplicationRecord
 
   after_initialize :set_default_role, if: :new_record?
 
+  # constants for validation
+  PASSWORD_INVALID_MESSAGE = 'must include at least one lowercase letter, one uppercase letter, and one digit'.freeze
+  USERNAME_INVALID_MESSAGE = 'only allows alphanumeric characters and underscores'.freeze
+  USERNAME_REGEX = /\A[a-zA-Z0-9_]+\z/
+  PASSWORD_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}\z/
+
   validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
   validates :name, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :username, format: { with: USERNAME_REGEX, message: USERNAME_INVALID_MESSAG }
+  validates :password, length: { minimum: 8 }, format: { with: PASSWORD_REGEX, message: PASSWORD_INVALID_MESSAGE }
 
   roles.keys.each do |role_name|
     define_method("#{role_name}?") do
