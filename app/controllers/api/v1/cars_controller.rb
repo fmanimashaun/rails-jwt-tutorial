@@ -4,21 +4,12 @@ class API::V1::CarsController < ApplicationController
   # GET /api/v1/cars/:id
   def show
     render json: {
-             status: {
-               code: 200,
-               message: 'Car fetched successfully.'
-             },
-             data:
-               CarSerializer.new(
-                 @car,
-                 include: [:car_detail]
-               ).serializable_hash[
-                 :data
-               ][
-                 :attributes
-               ]
-           },
-           status: :ok
+      status: {
+        code: 200,
+        message: 'Car fetched successfully.'
+      },
+      data: CarWithDetailsSerializer.new(@car).serializable_hash[:data][:attributes]
+    }, status: :ok
   end
 
   # POST /api/v1/cars
@@ -31,15 +22,7 @@ class API::V1::CarsController < ApplicationController
                  code: 201,
                  message: 'Car created successfully.'
                },
-               data:
-                 CarSerializer.new(
-                   @car,
-                   include: [:car_detail]
-                 ).serializable_hash[
-                   :data
-                 ][
-                   :attributes
-                 ]
+               data: CarWithDetailsSerializer.new(@car).serializable_hash[:data][:attributes]
              },
              status: :created
     else
@@ -55,15 +38,7 @@ class API::V1::CarsController < ApplicationController
                  code: 200,
                  message: 'Car updated successfully.'
                },
-               data:
-                 CarSerializer.new(
-                   @car,
-                   include: [:car_detail]
-                 ).serializable_hash[
-                   :data
-                 ][
-                   :attributes
-                 ]
+               data: CarWithDetailsSerializer.new(@car).serializable_hash[:data][:attributes]
              },
              status: :ok
     else
@@ -96,6 +71,7 @@ class API::V1::CarsController < ApplicationController
       :name,
       :description,
       car_detail_attributes: %i[
+        engine_type_id
         horsepower
         torque
         fuel_economy
@@ -106,7 +82,6 @@ class API::V1::CarsController < ApplicationController
         safety_rating
         tech_features
         special_features
-        engine_type_id
       ]
     )
   end
