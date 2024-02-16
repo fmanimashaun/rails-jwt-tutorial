@@ -5,6 +5,18 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :cars
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :cars
+    end
+  end
+
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   get '/current_user', to: 'users/current_user#index'
