@@ -87,7 +87,7 @@ class API::V1::CarsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_car
-    @car = Car.find(params[:id])
+    @car = Car.includes(:car_detail).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
@@ -99,6 +99,7 @@ class API::V1::CarsController < ApplicationController
         horsepower
         torque
         fuel_economy
+        range
         seating_capacity
         cargo_space
         infotainment_system

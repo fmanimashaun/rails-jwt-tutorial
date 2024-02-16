@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_15_172655) do
     t.integer "horsepower"
     t.integer "torque"
     t.string "fuel_economy"
+    t.string "range"
     t.integer "seating_capacity"
     t.string "cargo_space"
     t.string "infotainment_system"
