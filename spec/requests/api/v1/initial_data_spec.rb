@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'API::V1::Reservations', type: :request do
+RSpec.describe 'API::V1::InitialData', type: :request do
   describe 'GET /index' do
     pending "add some examples (or delete) #{__FILE__}"
   end
