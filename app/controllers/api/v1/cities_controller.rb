@@ -1,15 +1,6 @@
 class API::V1::CitiesController < ApplicationController
   before_action :set_city, only: %i[show update destroy]
 
-  # GET /api/v1/cities
-  def index
-    @cities = City.all
-    render json: {
-      status: { code: 200, message: 'Cities fetched successfully.' },
-      data: @cities.map { |city| CitySerializer.new(city).serializable_hash[:data][:attributes] }
-    }, status: :ok
-  end
-
   # GET /api/v1/cities/1
   def show
     render json: {

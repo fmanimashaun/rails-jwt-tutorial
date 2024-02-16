@@ -1,19 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :cities
-    end
-  end
-
-  namespace :api do
-    namespace :v1 do
-      resources :cars
-    end
-  end
-
-  namespace :api do
-    namespace :v1 do
-      resources :cars
+      resources :initial_data, only: [:index]
+      resources :cities, except: [:index]
+      resources :cars, except: [:index]
     end
   end
 
