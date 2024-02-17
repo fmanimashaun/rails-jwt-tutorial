@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_15_172655) do
   create_table "cars", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.string "image_url", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
