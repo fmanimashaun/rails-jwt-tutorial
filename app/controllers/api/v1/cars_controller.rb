@@ -70,6 +70,7 @@ class API::V1::CarsController < ApplicationController
     params.require(:car).permit(
       :name,
       :description,
+      :car_image,
       car_detail_attributes: %i[
         engine_type_id
         horsepower
