@@ -2,8 +2,15 @@ class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
-    render json: { error: exception.message }, status: :forbidden
+    render json: {
+      status: {
+        code: 403,
+        message: 'Forbidden'
+      },
+      error: exception.message
+    }, status: :forbidden
   end
+
 
   protected
 
