@@ -1,4 +1,5 @@
 class API::V1::CitiesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_city, only: %i[show update destroy]
 
   # GET /api/v1/cities/1
