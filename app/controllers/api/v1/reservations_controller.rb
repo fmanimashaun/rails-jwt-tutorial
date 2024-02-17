@@ -1,6 +1,7 @@
 class API::V1::ReservationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_reservation, only: %i[show update destroy]
+  load_and_authorize_resource
 
   # GET /api/v1/reservations
   def index

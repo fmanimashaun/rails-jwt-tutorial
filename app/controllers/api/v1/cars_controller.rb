@@ -1,6 +1,7 @@
 class API::V1::CarsController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy]
   before_action :set_car, only: %i[show update destroy]
+  load_and_authorize_resource
 
   # GET /api/v1/cars/:id
   def show
