@@ -1,5 +1,5 @@
 class CarDetail < ApplicationRecord
-  belongs_to :car
+  belongs_to :car, inverse_of: :car_detail
   belongs_to :engine_type
 
   validates :horsepower, :torque, numericality: { only_integer: true, greater_than: 0 }

@@ -19,6 +19,8 @@ class API::V1::CarsController < ApplicationController
     @car = Car.new(car_params)
 
     if @car.save
+      @car.image_url = rails_blob_url(@car.car_image, only_path: true)
+      @car.save
       render json: {
                status: {
                  code: 201,

@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryBot.define do
   factory :car_detail do
-    car
+    association :car, strategy: :build
     engine_type
     horsepower { Faker::Number.between(from: 100, to: 600) }
     torque { Faker::Number.between(from: 100, to: 600) }
