@@ -14,7 +14,7 @@ class Car < ApplicationRecord
   private
 
   def update_image_url
-    image_path = Rails.application.routes.url_helpers.rails_blob_path(car_image, only_path: true)
+    image_path = Rails.application.routes.url_helpers.url_for(car_image)
     update_column(:image_url, image_path)
   end
 
