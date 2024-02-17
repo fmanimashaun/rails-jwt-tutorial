@@ -2,7 +2,7 @@ class API::V1::InitialDataController < ApplicationController
   def index
     @cities = City.all
     @engine_types = EngineType.all
-    @cars  = Car.all
+    @cars = Car.all
 
     render json: {
       status: { code: 200, message: 'Initial data fetched.' },
