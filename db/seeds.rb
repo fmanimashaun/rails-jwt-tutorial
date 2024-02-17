@@ -541,5 +541,11 @@ car.each do |car|
     new_car.car_image.attach(io: File.open(Rails.root.join('db', 'cars-images', car[:car_image])), filename: car[:car_image])
     new_car.build_car_detail(car[:car_details])
     new_car.save
+
+    if new_car.save
+      new_car.set_image_url
+      new_car.save
+    end
+
   end
 end

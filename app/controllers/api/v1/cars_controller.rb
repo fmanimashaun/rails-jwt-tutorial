@@ -19,7 +19,7 @@ class API::V1::CarsController < ApplicationController
     @car = Car.new(car_params)
 
     if @car.save
-      @car.image_url = rails_blob_url(@car.car_image, only_path: true)
+      @car.set_image_url
       @car.save
       render json: {
                status: {
@@ -37,6 +37,8 @@ class API::V1::CarsController < ApplicationController
   # PATCH/PUT /api/v1/cars/:id
   def update
     if @car.update(car_params)
+      @car.set_image_url
+      @car.save
       render json: {
                status: {
                  code: 200,
