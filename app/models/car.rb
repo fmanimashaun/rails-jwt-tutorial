@@ -7,7 +7,6 @@ class Car < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 3, maximum: 255 }
   validates :description, presence: true, length: { minimum: 10, maximum: 255 }
-  validates :car_detail, presence: true
   validate :car_image_attached
 
   def set_image_url

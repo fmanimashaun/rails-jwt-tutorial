@@ -2,12 +2,11 @@ require 'faker'
 
 FactoryBot.define do
   factory :car_detail do
-    association :car, strategy: :build
     engine_type
     horsepower { Faker::Number.between(from: 100, to: 600) }
     torque { Faker::Number.between(from: 100, to: 600) }
-    fuel_economy { Faker::Number.decimal(l_digits: 2, r_digits: 1) }
-    range { Faker::Number.between(from: 200, to: 500).to_s }
+    fuel_economy { "#{Faker::Number.between(from: 20, to: 30)} mpg" }
+    range { "#{Faker::Number.between(from: 200, to: 500)} miles (EPA est.)" }
     seating_capacity { Faker::Number.between(from: 2, to: 5) }
     cargo_space { Faker::Number.between(from: 10, to: 50).to_s }
     infotainment_system { Faker::Vehicle.standard_specs.sample }

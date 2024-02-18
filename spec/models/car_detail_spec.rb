@@ -1,5 +1,48 @@
 require 'rails_helper'
 
 RSpec.describe CarDetail, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    allow_any_instance_of(Car).to receive(:set_image_url)
+  end
+
+  let(:car) { create(:car) }
+  let(:car_detail) { car.car_detail }
+
+  it 'validates presence of seating_capacity' do
+    car_detail.seating_capacity = nil
+    expect(car_detail).not_to be_valid
+    expect(car_detail.errors[:seating_capacity]).to include("can't be blank")
+  end
+
+  # Add similar tests for other attributes...
+
+  it 'validates numericality of horsepower' do
+    car_detail.horsepower = 'abc'
+    expect(car_detail).not_to be_valid
+    expect(car_detail.errors[:horsepower]).to include('is not a number')
+  end
+
+  # Add similar tests for other numerical attributes...
+
+  it 'validates presence of fuel_economy unless range is present' do
+    car_detail.fuel_economy = nil
+    car_detail.range = nil
+    expect(car_detail).not_to be_valid
+    expect(car_detail.errors[:fuel_economy]).to include("can't be blank")
+  end
+
+  it 'validates presence of range unless fuel_economy is present' do
+    car_detail.range = nil
+    car_detail.fuel_economy = nil
+    expect(car_detail).not_to be_valid
+    expect(car_detail.errors[:range]).to include("can't be blank")
+  end
+
+  it 'belongs to a car' do
+    expect(car_detail).to respond_to(:car)
+  end
+
+  it 'belongs to an engine_type' do
+    expect(car_detail).to respond_to(:engine_type)
+  end
 end
