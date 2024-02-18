@@ -11,7 +11,6 @@ class ApplicationController < ActionController::API
     }, status: :forbidden
   end
 
-
   protected
 
   def configure_permitted_parameters
