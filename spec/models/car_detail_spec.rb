@@ -5,8 +5,8 @@ RSpec.describe CarDetail, type: :model do
     allow_any_instance_of(Car).to receive(:set_image_url)
   end
 
-  let(:car) { create(:car) }
-  let(:car_detail) { car.car_detail }
+  let(:car) { build_stubbed(:car) }
+  let(:car_detail) { build_stubbed(:car_detail, car:) }
 
   it 'validates presence of seating_capacity' do
     car_detail.seating_capacity = nil
