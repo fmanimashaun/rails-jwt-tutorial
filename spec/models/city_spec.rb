@@ -12,7 +12,7 @@ RSpec.describe City, type: :model do
   it 'validates length of name' do
     city.name = 'a' * 256
     expect(city).not_to be_valid
-    expect(city.errors[:name]).to include("is too long (maximum is 255 characters)")
+    expect(city.errors[:name]).to include('is too long (maximum is 255 characters)')
   end
 
   it 'has many reservations' do
